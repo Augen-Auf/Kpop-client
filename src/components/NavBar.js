@@ -62,7 +62,7 @@ const NavBar = observer(() => {
                                 <div className="flex-shrink-0 w-2/12">
                                     <img
                                         className="h-12 w-90"
-                                        src="/img/Logo.svg"/>
+                                        src="img/Logo.svg"/>
                                 </div>
                                 <div className="hidden md:block w-8/12">
                                     <div className="flex items-baseline justify-end">
