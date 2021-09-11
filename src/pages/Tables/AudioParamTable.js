@@ -6,7 +6,7 @@ const AudioParamTable = ({trackReqParams, audioDataTable}) => {
     return (
         <Fragment>
             <input type="text" value={fileName} onChange={(e) => setFileName(e.target.value)} className="min-w-1/2 border p-2 focus:outline-none rounded-md"/>
-            <table id="propMusic" className="min-w-1/2 xl:visible invisible">
+            <table id="propMusic" className="min-w-1/2 xl:block hidden">
                 <thead className="">
                 <tr className="">
                     <th  className="p-3"/>
