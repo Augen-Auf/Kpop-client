@@ -132,7 +132,7 @@ const Music = observer(() => {
         <div className="flex flex-col mx-auto font-montserrat font-normal text-black text-md py-10">
             <div className="bg-gray-600 py-10 bg-gradient-to-tr from-yellow to-pink">
                 <div className="container mx-auto flex flex-col space-y-4">
-                    <p className="text-white text-center text-2xl">Релизы месяца</p>
+                    <p className="text-center text-2xl">Релизы месяца</p>
                     <div className="flex space-x-4 mx-auto">
                         {newReleases && newReleases.map((item, index) => {
                             return <div className="bg-yellow rounded-md" key={'album_' + index}>
@@ -150,12 +150,12 @@ const Music = observer(() => {
                 </div>
             </div>
             <div className="container mx-auto space-y-5">
-                <div className="mt-4 flex flex-col space-y-4 items-center w-full mx-auto">
+                <div className="mt-4 flex flex-col space-y-4 items-center w-full mx-auto md:mx-0 px-2">
                     <label htmlFor="" className="block uppercase">Исполнитель</label>
-                    <input type="text" ref={artistQRef} className="p-2 rounded-md w-1/2"/>
+                    <input type="text" ref={artistQRef} className="p-2 rounded-md md:w-1/2 w-full"/>
                     <button  onClick={sendQHandler} className="w-min py-2 px-4 bg-pink rounded-md">Построить</button>
                 </div>
-                <div className="grid grid-cols-5 gap-4">
+                <div className="grid md:grid-cols-5 md:gap-4 grid-cols-3 gap-4">
                     {artistAlbums && artistAlbums.map((item, index) => {
                         return(
                             <div className="bg-yellow rounded-md mx-2 flex flex-col justify-between" key={'album_' + index}>
@@ -222,19 +222,19 @@ const Music = observer(() => {
                             leaveFrom="opacity-100 scale-100"
                             leaveTo="opacity-0 scale-95"
                         >
-                            <div className="inline-block w-1/2 max-w-full p-6 my-8 overflow-hidden text-left align-middle transition-all transform bg-white shadow-xl rounded-2xl">
+                            <div className="inline-block  lg:w-1/2 md:w-2/3 w-full max-w-full p-6 my-8 overflow-hidden text-left align-middle transition-all transform bg-white shadow-xl rounded-2xl">
                                 <Dialog.Title
                                     as="h3"
                                     className="text-lg font-medium leading-6 text-gray-900"
                                 >
                                     Содержание альбома
                                 </Dialog.Title>
-                                <div className='p-4 grid grid-cols-2 gap-4'>
+                                <div className='grid grid-cols-1 gap-4 sm:p-4 lg:grid-cols-2 md:gap-4 my-4'>
                                     {albumTracks && albumTracks.map((item, index) => {
                                         return <div className="flex bg-yellow rounded-md justify-between" key={'album_' + index}>
-                                            <div className="flex flex-col p-2">
+                                            <div className="flex flex-col p-2 w-9/12">
                                                 <p className="">№ {item.track_number}</p>
-                                                <p className="font-bold text-lg">{item.name}</p>
+                                                <p className="font-bold text-lg truncate">{item.name}</p>
                                             </div>
                                             <div className="flex items-center justify-center p-2"><p className="">{Math.round((item.duration_ms / 60000)* 100) / 100} 🕙︎</p></div>
                                         </div>

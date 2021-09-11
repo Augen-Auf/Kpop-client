@@ -6,7 +6,7 @@ const SongsTable = ({plotData}) => {
     return (
         <Fragment>
             <input type="text" value={fileName} onChange={(e) => setFileName(e.target.value)} className="min-w-1/2 border p-2 focus:outline-none rounded-md"/>
-            <table id="topSongs" className="min-w-1/2">
+            <table id="topSongs" className="min-w-1/2 lg:visible invisible">
                 <thead className="border-2">
                 <tr className="bg-yellow">
                     <th className="p-3 border-r-2">Songs</th>

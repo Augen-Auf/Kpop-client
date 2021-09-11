@@ -164,16 +164,19 @@ const Statistics = () => {
     return(
         <>
             <div className="flex justify-center font-montserrat font-normal text-black text-md py-10">
-                <div className="flex w-1/2 mx-auto flex-col items-center space-y-10">
+                <div className="flex lg:w-1/2 md:w-3/4 w-full md:px-0 px-8 mx-auto flex-col items-center space-y-10">
                     <div className="flex flex-col w-full">
-                        <div className="flex flex-col w-4/6 mt-4">
+                        <div className="flex flex-col lg:w-4/6 md:w-5/6 w-full mt-4">
                             <label htmlFor="" className="block">Исполнитель:</label>
                             <input type="text" ref={artistQRef} className="p-2 rounded-md"/>
-                            <div className="py-3">
+                            <div className="py-3 flex justify-between">
                                 <button onClick={sendQHandler} className="py-2 px-4 bg-pink rounded-md">Построить</button>
+                                <button onClick={() => openModal('songsTable')} className="md:hidden block bg-pink rounded-md h-12 w-12 p-2">
+                                    <img src="/img/Excel.svg"/>
+                                </button>
                             </div>
                         </div>
-                        <div className="flex space-x-4 w-full">
+                        <div className="flex md:flex-row flex-col md:space-x-4 space-x-0 md:space-y-0 space-y-4 w-full">
                         <Plot
                             data={[
                                 {
@@ -184,8 +187,9 @@ const Statistics = () => {
                                     orientation: 'h'
                                 }
                             ]}
+                            useResizeHandler={true}
+                            style={{width: "100%", height: 500}}
                             layout={{
-                                height: 500,
                                 title: `<b>Топ 10 треков ${artist.name || ''}</b>`,
                                 paper_bgcolor: '#FFFFE1',
                                 plot_bgcolor: '#FFFFE1',
@@ -218,28 +222,33 @@ const Statistics = () => {
                                 hovermode: 'closest'
                             }}
                         />
-                            <div>
+                            <div className="md:block hidden">
                                 <button onClick={() => openModal('songsTable')} className="bg-pink rounded-md h-12 w-12 p-2">
                                     <img src="/img/Excel.svg"/>
                                 </button>
                             </div>
                         </div>
                     </div>
-                    <div className="flex flex-col iy w-full">
-                        <div className="flex flex-col justify-start w-4/6 mt-4">
+                    <div className="flex flex-col w-full">
+                        <div className="flex flex-col lg:w-4/6 md:w-5/6 w-full mt-4">
                             <label htmlFor="" className="block">Исполнители:</label>
                             <input type="text" ref={audioQRef} className="p-2 rounded-md"/>
-                            <div className="py-3">
+                            <div className="py-3 flex justify-between">
                                 <button onClick={getTracksFeaturesHandler} className="py-2 px-4 bg-pink rounded-md">Построить</button>
+                                <button onClick={() => openModal('audioParamsTable')} className="md:hidden block bg-pink rounded-md h-12 w-12 p-2">
+                                    <img src="/img/Excel.svg"/>
+                                </button>
                             </div>
                         </div>
-                        <div className="flex justify-center w-full space-x-4">
+                        <div className="flex md:flex-row flex-col md:space-x-4 space-x-0 md:space-y-0 space-y-4 w-full">
                             <div className="flex flex-col w-full space-y-4">
                                 <Plot
                                     data = {plotAudioData}
+                                    useResizeHandler={true}
+                                    style={{width: "100%", height: 500}}
                                     layout = {{
-                                        height: 500,
-                                        title: `<b>Характеристика музыки исполнителей</b>`,
+                                        autosize: true,
+                                        title: `<b>Характеристика <br> музыки исполнителей</b>`,
                                         margin:{l: 100, r: 100, b: 140, t: 120, pad: 4},
                                         font: {size: 16, family: "Montserrat"},
                                         legend: {font: {size: 16, family: "Montserrat"} },
@@ -289,7 +298,7 @@ const Statistics = () => {
                                     )}
                                 </div>
                             </div>
-                            <div>
+                            <div className="md:block hidden">
                                 <button onClick={() => openModal('audioParamsTable')} className="bg-pink rounded-md h-12 w-12 p-2">
                                    <img src="/img/Excel.svg"/>
                                 </button>
@@ -340,7 +349,7 @@ const Statistics = () => {
                                 >
                                     Экспорт данных
                                 </Dialog.Title>
-                               <div className="flex flex-col items-center space-y-4">
+                               <div className="flex flex-col items-center space-y-4 my-3">
                                    { activeTable }
                                </div>
                                 <button onClick={() => closeModal()}

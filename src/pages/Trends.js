@@ -47,12 +47,12 @@ const Trends = () => {
 
     },[])
     return (
-        <div className="py-10">
+        <div className="py-10 px-4">
             <div className="max-w-4xl mx-auto flex flex-col items-center font-montserrat font-normal text-black">
                 { topNew  && pageNumber === 0 &&
                     <div
                         className="bg-pink w-full h-96 flex flex-col justify-end py-5 mb-10 rounded-md"
-                        style={{backgroundImage: topNew.imageLink ? `url(${ topNew.imageLink })` : null, backgroundSize: 'cover'}}>>
+                        style={{backgroundImage: topNew.imageLink ? `url(${ topNew.imageLink })` : null, backgroundSize: 'cover'}}>
                         <div className="w-5/6 px-3 py-4 bg-yellow bg-opacity-80 space-y-6">
                             <span className="text-2xl font-semibold" onClick={() => history.push('/news/'+topNew.id)}>
                                 { topNew.title }
@@ -81,13 +81,13 @@ const Trends = () => {
                                 <span className="text-xl font-medium text-wrap" onClick={() => history.push('/news/'+item.id)}>
                                     {item.title}
                                 </span>
-                                <div className="flex space-x-4">
+                                <div className="flex md:flex-row flex-col md:space-x-4">
                                     <span>{item.views} просмотров</span>
                                     <span>{item.comments.length} комментариев</span>
                                 </div>
                             </div>
                             <div className="flex space-x-4">
-                                <div className="flex flex-col justify-end">
+                                <div className="flex flex-col md:justify-end justify-start">
                                     <button>
                                         <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none"
                                              viewBox="0 0 24 24" stroke="currentColor">

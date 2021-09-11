@@ -10,7 +10,7 @@ const Footer = observer(() => {
                 <div className="py-6 flex flex-col justify-center items-center">
                     <p className="text-lg leading-none text-black">Мы в соц. сетях</p>
                     <div className="flex items-center mt-4">
-                        <a href="https://twitter.com/home?lang=ru">
+                        <a target="_blank" href="https://twitter.com/home?lang=ru">
                             <div className="flex flex-col justify-center items-center">
                                 <svg aria-hidden="true" focusable="false" data-prefix="fab" data-icon="twitter"
                                      className="svg-inline--fa fa-twitter fa-w-16 fill-current text-pink h-10 w-90" role="img"
@@ -20,7 +20,7 @@ const Footer = observer(() => {
                                 </svg>
                             </div>
                         </a>
-                        <a href="https://www.instagram.com/feanvie/?hl=ru">
+                        <a target="_blank" href="https://www.instagram.com/feanvie/?hl=ru">
                             <div className="pl-4">
                                 <svg aria-hidden="true" focusable="false" data-prefix="fab" data-icon="instagram"
                                      className="svg-inline--fa fa-instagram fa-w-14 fill-current text-pink h-10 w-90" role="img"
@@ -30,7 +30,7 @@ const Footer = observer(() => {
                                 </svg>
                             </div>
                         </a>
-                        <a href="https://vk.com/id241168145">
+                        <a target="_blank" href="https://vk.com/id241168145">
                             <div className="pl-4">
                                 <svg aria-hidden="true" focusable="false" data-prefix="fab" data-icon="vk"
                                      className="svg-inline--fa fa-vk fa-w-18 fill-current text-pink h-10 w-90" role="img"
@@ -41,7 +41,7 @@ const Footer = observer(() => {
                             </div>
                         </a>
                     </div>
-                    <p className="mt-4 leading-none text-black">© 2021 - K-WORLD-Последние новости индустрии K-POP. All Rights Reserved.</p>
+                    <p className="leading-6 mx-10 sm:mx-0 mt-4 sm:leading-none text-black text-center">© 2021 - K-WORLD последние новости индустрии K-POP. All Rights Reserved.</p>
                 </div>
             </footer>
         </div>

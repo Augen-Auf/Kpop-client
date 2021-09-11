@@ -69,10 +69,10 @@ const News = () => {
     },[])
 
     return (
-        <div className="w-full font-montserrat pb-8">
-            <div className="max-w-7xl mx-auto flex justify-between py-10">
-                <div className="flex flex-col space-y-10 w-3/4 px-4 pb-10">
-                    <div className="w-full grid grid-rows-3 grid-cols-2 gap-4">
+        <div className="w-full font-montserrat md:pb-8 pb-4">
+            <div className="max-w-7xl mx-auto flex md:flex-row flex-col-reverse justify-between py-10">
+                <div className="flex flex-col space-y-10 mb:w-3/4 w-full px-4 pb-10">
+                    <div className="w-full grid grid-rows-3 md:grid-cols-2 grid-cols-1 gap-4">
                         {news && news.length > 0 && news.slice(0,2).map( item =>
                         <div
                             className="py-5 rounded-md bg-pink bg-center row-span-3 flex items-end h-64"
@@ -86,7 +86,7 @@ const News = () => {
                         </div>
                         )}
                     </div>
-                    <div className="w-full grid grid-cols-3 gap-4">
+                    <div className="w-full grid md:grid-cols-3 grid-cols-1 gap-4">
                         { news && news.slice(2).map( item =>
                         <div
                             className="py-5 rounded-md bg-pink h-48 bg-center flex items-end"
@@ -101,7 +101,7 @@ const News = () => {
                         )}
                     </div>
                 </div>
-                <div className="sticky top-10 h-full flex flex-col space-y-4 w-1/4 px-4">
+                <div className="md:sticky md:top-10 md:h-full flex flex-col space-y-4 md:w-1/4 w-full px-4 md:mb-0 mb-4">
                     <div className="w-full p-2 bg-yellow flex items-center justify-center rounded-md">
                         <span>Теги</span>
                     </div>

@@ -26,7 +26,7 @@ const Vikis = () => {
 
     return (
         <div className="flex justify-center font-montserrat font-normal py-10">
-            <div className="max-w-6xl grid grid-cols-4 gap-32">
+            <div className="max-w-6xl grid lg:grid-cols-3 sm:grid-cols-2 grid-cols-1 md:gap-10 gap-6">
             {
                 vikis && vikis.map(item =>
                 <div className="h-80 w-72 rounded-md flex flex-col justify-end py-5 shadow-md bg-yellow"
