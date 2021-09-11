@@ -56,22 +56,18 @@ const NavBar = observer(() => {
         <div className='font-montserrat font-medium'>
             <>
                 <div className="max-w-7xl mx-auto md:px-6 lg:px-8">
-                    <div className="justify-between md:flex-row flex-row-reverse flex items-center h-full md:bg-transparent bg-blue-dark md:px-0 px-4">
-                        {user.user.isAuth &&
-                        <div className="md:hidden">
-                            <Link as="button"
-                                  className="max-w-xs bg-gray-800 rounded-full flex items-center text-sm focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white"
-                                  to={PROFILE_ROUTE}>
-                                <div className="rounded-full h-8 w-8 bg-pink">
-                                    {user.user.avatarId &&
-                                    <img src={process.env.REACT_APP_API_URL + 'api/avatar/' + user.user.avatarId}
-                                         className="object-cover rounded-full w-full h-full" alt=""/>
-                                    }
-                                </div>
-                            </Link>
+                    <div className="justify-between flex items-center h-full md:bg-transparent bg-blue-dark md:px-0 px-4">
+                        <div className="flex md:hidden w-1/12 justify-start">
+                            {/* Mobile menu button */}
+                            <button onClick={() => setMobileMenuOpen(!mobileMenuOpen)} className="focus:outline-none bg-pink inline-flex items-center justify-center p-2 rounded-md hover:text-white">
+
+                                {mobileMenuOpen ? (
+                                    <XIcon className="block h-6 w-6 rounded-md" aria-hidden="true" />
+                                ) : (
+                                    <MenuIcon className="block h-6 w-6 rounded-md" aria-hidden="true" />
+                                )}
+                            </button>
                         </div>
-                        }
-                        <div className="md:hidden block w-1/12"></div>
                         <div className="flex-shrink-0 md:w-2/12 w-4/12">
                             <img
                                 className="h-12 w-90"
@@ -88,10 +84,10 @@ const NavBar = observer(() => {
                             )}
                             </div>
                         </div>
-                        <div className="hidden md:block w-1/12">
-                            <div className="ml-4 flex items-center md:ml-6">
+                        <div className="w-1/12 flex justify-start">
+                            <div className="flex items-center md:ml-6">
                                 {/* Profile dropdown */}
-                                <Menu as="div" className="ml-3 relative">
+                                <Menu as="div" className="relative">
                                     {({ open }) => (
                                         <>
                                             <div>
@@ -159,17 +155,6 @@ const NavBar = observer(() => {
                                 </Menu>
                             </div>
                         </div>
-                        <div className="flex md:hidden w-1/12 justify-start">
-                            {/* Mobile menu button */}
-                            <button onClick={() => setMobileMenuOpen(!mobileMenuOpen)} className="focus:outline-none bg-pink inline-flex items-center justify-center p-2 rounded-md hover:text-white">
-
-                                {mobileMenuOpen ? (
-                                    <XIcon className="block h-6 w-6 rounded-md" aria-hidden="true" />
-                                ) : (
-                                    <MenuIcon className="block h-6 w-6 rounded-md" aria-hidden="true" />
-                                )}
-                            </button>
-                        </div>
                     </div>
                     { mobileMenuOpen && <div className="md:hidden w-full bg-blue-dark">
                         <div className="px-4 pt-2 pb-3 space-y-1">
@@ -182,17 +167,6 @@ const NavBar = observer(() => {
                                     {item.title}
                                 </a>
                             )}
-                            {
-                                !user.user.isAuth && unauth_profile.map((item, itemIdx) =>
-                                    <a
-                                        key={item.link}
-                                        href={item.link}
-                                        className="text-black uppercase hover:bg-pink hover:text-black block px-3 py-2 rounded-md text-base font-medium"
-                                    >
-                                        {item.title}
-                                    </a>
-                                )
-                            }
                         </div>
                         {/*<div className="pt-4 pb-3 border-t border-black">*/}
                         {/*    <div className="flex items-center px-5">*/}

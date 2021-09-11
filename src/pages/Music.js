@@ -133,11 +133,11 @@ const Music = observer(() => {
             <div className="bg-gray-600 py-10 bg-gradient-to-tr from-yellow to-pink">
                 <div className="container mx-auto flex flex-col space-y-4">
                     <p className="text-center text-2xl">Релизы месяца</p>
-                    <div className="flex space-x-4 mx-auto">
+                    <div className="flex space-x-4 mx-auto px-4">
                         {newReleases && newReleases.map((item, index) => {
                             return <div className="bg-yellow rounded-md" key={'album_' + index}>
                                 <div>
-                                    <img src={item.images[0].url} alt="" className="h-72 w-68 rounded-t-md"/>
+                                    <img src={item.images[0].url} alt="" className="md:h-72 h-48 md:w-68 w-44 rounded-t-md"/>
                                 </div>
                                 <div className="p-2">
                                     <p className="font-bold">{item.name}</p>
@@ -155,7 +155,7 @@ const Music = observer(() => {
                     <input type="text" ref={artistQRef} className="p-2 rounded-md md:w-1/2 w-full"/>
                     <button  onClick={sendQHandler} className="w-min py-2 px-4 bg-pink rounded-md">Построить</button>
                 </div>
-                <div className="grid md:grid-cols-5 md:gap-4 grid-cols-3 gap-4">
+                <div className="grid md:grid-cols-5 md:gap-4 grid-cols-2 gap-4">
                     {artistAlbums && artistAlbums.map((item, index) => {
                         return(
                             <div className="bg-yellow rounded-md mx-2 flex flex-col justify-between" key={'album_' + index}>
@@ -173,17 +173,6 @@ const Music = observer(() => {
                         )
                     })}
                 </div>
-                {/*<div className="flex bg-pink">*/}
-                {/*    {albumTracks && albumTracks.map((item, index) => {*/}
-                {/*        return <div className="flex bg-yellow rounded-md mx-2" key={'album_' + index}>*/}
-                {/*            <div className="flex flex-col p-2">*/}
-                {/*                <p className="font-bold">{item.name}</p>*/}
-                {/*                <p className="">№ {item.track_number}</p>*/}
-                {/*                <p className="">{Math.round((item.duration_ms / 60000)* 100) / 100} 🕙︎</p>*/}
-                {/*            </div>*/}
-                {/*        </div>*/}
-                {/*    })}*/}
-                {/*</div>*/}
             </div>
 
         </div>

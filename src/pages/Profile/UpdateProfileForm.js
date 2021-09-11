@@ -44,7 +44,7 @@ const UpdateProfileForm = observer(({openForm}) => {
 
 
     return (
-        <div>
+        <>
             <Dialog.Title as="p" className="text-lg font-semibold">Редактировать профиль</Dialog.Title>
             <div className="flex flex-col space-y-3">
                 <form className="flex flex-col space-y-3" onSubmit={handleSubmit(changeUserData)}>
@@ -89,7 +89,7 @@ const UpdateProfileForm = observer(({openForm}) => {
                     </div>
                 </form>
             </div>
-        </div>
+        </>
     );
 });
 

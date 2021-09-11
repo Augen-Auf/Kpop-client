@@ -58,7 +58,7 @@ const Trends = () => {
                                 { topNew.title }
                             </span>
                             <div className="flex justify-between">
-                                <div className="flex space-x-4">
+                                <div className="flex space-x-4 md:text-md text-sm">
                                     <span>{topNew.views} просмотров</span>
                                     <span>{topNew.comments.length} комментариев</span>
                                 </div>
@@ -81,7 +81,7 @@ const Trends = () => {
                                 <span className="text-xl font-medium text-wrap" onClick={() => history.push('/news/'+item.id)}>
                                     {item.title}
                                 </span>
-                                <div className="flex md:flex-row flex-col md:space-x-4">
+                                <div className="flex md:flex-row flex-col md:space-x-4 md:text-md text-sm">
                                     <span>{item.views} просмотров</span>
                                     <span>{item.comments.length} комментариев</span>
                                 </div>
@@ -96,7 +96,7 @@ const Trends = () => {
                                         </svg>
                                     </button>
                                 </div>
-                                <div className="h-52 w-52 rounded-md bg-pink">
+                                <div className="md:h-52 md:w-52 h-40 w-40 rounded-md bg-pink">
                                     {item.imageLink &&
                                     <img src={item.imageLink} className="object-cover rounded-md w-full h-full" alt=""/>
                                     }

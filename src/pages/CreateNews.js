@@ -131,7 +131,7 @@ const CreateNews = observer(() => {
     return (
         <div className="justify-center font-montserrat font-normal" >
             <div className="flex flex-grow justify-center mt-10">
-                <div className="w-4/6 p-5 bg-white min-h-3/4 mb-10 shadow-md rounded-md">
+                <div className="md:w-4/6 w-full p-5 bg-white min-h-3/4 mb-10 shadow-md rounded-md">
                     <form onSubmit={handleSubmit(addNew)}>
                         <div className="mb-4">
                             <label>Заголовок</label>
