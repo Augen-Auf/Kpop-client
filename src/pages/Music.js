@@ -137,7 +137,7 @@ const Music = observer(() => {
                         {newReleases && newReleases.map((item, index) => {
                             return <div className="bg-yellow rounded-md" key={'album_' + index}>
                                 <div>
-                                    <img src={item.images[0].url} alt="" className="md:h-72 h-48 md:w-68 w-44 rounded-t-md"/>
+                                    <img src={item.images[0].url} alt="" className="md:h-72 h-48 w-full rounded-t-md"/>
                                 </div>
                                 <div className="p-2">
                                     <p className="font-bold">{item.name}</p>
