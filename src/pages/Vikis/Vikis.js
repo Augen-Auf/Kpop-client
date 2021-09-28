@@ -30,8 +30,9 @@ const Vikis = () => {
             {
                 vikis && vikis.map(item =>
                 <div className="h-80 w-72 rounded-md flex flex-col justify-end py-5 shadow-md bg-yellow"
+                     onClick={() => {history.push('/vikis/'+ item.id)}}
                      style={{backgroundImage: item.imageLink ? `url(${ item.imageLink })` : null, backgroundSize: 'cover'}}>
-                    <span className="bg-pink p-3 -mx-2 rounded-md text-center" onClick={() => {history.push('/vikis/'+ item.id)}}>{item.name}</span>
+                    <span className="bg-pink p-3 -mx-2 rounded-md text-center">{item.name}</span>
                 </div>)
             }
             </div>
