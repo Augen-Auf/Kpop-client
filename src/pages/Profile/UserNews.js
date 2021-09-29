@@ -43,8 +43,8 @@ const UserNews = ({ userId}) => {
                 </button>
             </div>
             { userNews && userNews.length > 0 ? userNews.map( item =>
-                <div className="mt-3 2xl:w-5/6 2xl:mx-auto w-full bg-pink flex sm:flex-row sm:justify-between flex-col rounded-md lg:items-center cursor-pointer"
-                     onClick={() => { history.push('/news/'+item.id) }}>
+                <div className="mt-3 2xl:w-5/6 2xl:mx-auto w-full bg-pink flex sm:flex-row sm:justify-between flex-col rounded-md lg:items-center"
+                     >
                     <div className="flex lg:py-2 lg:px-2 py-3 lg:w-3/4">
                         <div className="lg:h-24 lg:w-24 w-40 h-40 rounded-md bg-pink">
                             {item.imageLink &&
@@ -52,7 +52,10 @@ const UserNews = ({ userId}) => {
                             }
                         </div>
                         <div className="flex flex-grow lg:flex-row flex-col lg:items-center justify-center">
-                            <p className="mx-8 font-medium w-3/4 lg:text-lg">{ item.lid }</p>
+                            <p className="mx-8 font-medium w-3/4 lg:text-lg cursor-pointer"
+                               onClick={() => { history.push('/news/'+item.id) }}>
+                                { item.lid }
+                            </p>
                             <p className="mx-8 w-1/4 lg:text-md text-sm">Добавлено: { moment(item.createdAt).format('DD.MM.YYYY') }</p>
                         </div>
                     </div>
