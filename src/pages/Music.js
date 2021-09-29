@@ -39,7 +39,7 @@ const Music = observer(() => {
             },
             data: 'grant_type=client_credentials'
         });
-        setToken(data.access_token);
+        await setToken(data.access_token);
 
         const {data:albumsData} = await axios(`https://api.spotify.com/v1/browse/new-releases?country=${market}&offset=0`,{
             'method': 'GET',
@@ -76,42 +76,43 @@ const Music = observer(() => {
             if(access_artist.length > 0)
                 return value
         });
-        setNewReleases(albums);
+        await setNewReleases(albums);
+
         artistQRef.current.value = 'Blackpink'
-        await sendQHandler()
+        await sendQHandler(data.access_token)
     }, []);
 
-    async function getArtist(q) {
+    async function getArtist(q, spotifyToken) {
         const {data} = await axios(`https://api.spotify.com/v1/search?query=${q}&type=${search_type}&limit=1`,{
             'method': 'GET',
             'headers': {
                 'Content-Type': 'application/json',
                 'Accept': 'application/json',
-                'Authorization': 'Bearer ' + token
+                'Authorization': 'Bearer ' + spotifyToken
             }
         });
         return data.artists.items[0]
     }
 
-    async function getArtistAlbums(id) {
+    async function getArtistAlbums(id, spotifyToken) {
         const {data} = await axios(`https://api.spotify.com/v1/artists/${id}/albums`,{
             'method': 'GET',
             'headers': {
                 'Content-Type': 'application/json',
                 'Accept': 'application/json',
-                'Authorization': 'Bearer ' + token
+                'Authorization': 'Bearer ' + spotifyToken
             }
         });
         return data.items
     }
 
-    async function sendQHandler() {
+    async function sendQHandler(spotifyToken) {
         const q = artistQRef.current.value;
 
-        const artistData = await getArtist(q);
+        const artistData = await getArtist(q, spotifyToken);
         setArtist(artistData);
 
-        let albums = await getArtistAlbums(artistData.id);
+        let albums = await getArtistAlbums(artistData.id, spotifyToken);
         albums = albums.filter(item => !item.available_markets.includes('JP'));
         setArtistAlbums(albums)
     }
@@ -155,7 +156,7 @@ const Music = observer(() => {
                     <div className="mt-4 flex flex-col space-y-4 items-center w-full mx-auto md:mx-0 px-2">
                         <label htmlFor="" className="block uppercase">Исполнитель</label>
                         <input type="text" ref={artistQRef} className="p-2 rounded-md md:w-1/2 w-full"/>
-                        <button  onClick={sendQHandler} className="w-min py-2 px-4 bg-pink rounded-md">Построить</button>
+                        <button  onClick={() => sendQHandler(token)} className="w-min py-2 px-4 bg-pink rounded-md">Построить</button>
                     </div>
                     <div className="grid md:grid-cols-5 md:gap-4 grid-cols-2 gap-4">
                         {artistAlbums && artistAlbums.map((item, index) => {

@@ -72,36 +72,36 @@ const Statistics = () => {
     async function pagePreload (spotifyToken) {
         artistQRef.current.value = 'Blackpink'
         audioQRef.current.value = 'Blackpink, TWICE, BTS'
-        await sendQHandler()
+        await sendQHandler(spotifyToken)
         await getTracksFeaturesHandler(spotifyToken)
     }
 
-    async function sendQHandler() {
+    async function sendQHandler(spotifyToken) {
         const q = artistQRef.current.value;
-        const artistData = await getArtist(q);
+        const artistData = await getArtist(q, spotifyToken);
         setArtist(artistData);
-        const tracks = await getArtistsTracks(artistData.id);
+        const tracks = await getArtistsTracks(artistData.id, spotifyToken);
         setPlotData(tracks)
     }
-    async function getArtist(q) {
+    async function getArtist(q, spotifyToken) {
         const {data} = await axios(`https://api.spotify.com/v1/search?query=${q}&type=${search_type}&limit=1`,{
             'method': 'GET',
             'headers': {
                 'Content-Type': 'application/json',
                 'Accept': 'application/json',
-                'Authorization': 'Bearer ' + token
+                'Authorization': 'Bearer ' + spotifyToken
             }
         });
         return data.artists.items[0]
     }
 
-    async function getArtistsTracks(id) {
+    async function getArtistsTracks(id, spotifyToken) {
         const {data} = await axios(`https://api.spotify.com/v1/artists/${id}/top-tracks?market=${market}`,{
             'method': 'GET',
             'headers': {
                 'Content-Type': 'application/json',
                 'Accept': 'application/json',
-                'Authorization': 'Bearer ' + token
+                'Authorization': 'Bearer ' + spotifyToken
             }
         });
         return data.tracks
@@ -123,15 +123,12 @@ const Statistics = () => {
     async function getTracksFeaturesHandler(spotifyToken) {
         const artistsNames = audioQRef.current.value.split(', ');
 
-        console.log('Token: ' + token)
-        console.log('sptToken: ' + spotifyToken)
-
         const artists = await Promise.all(artistsNames.map(async (item) => {
-            return await getArtist(item.trim())
+            return await getArtist(item.trim(), spotifyToken)
         }));
 
         const artistsTracksFeatures = await Promise.all(artists.map(async (item) => {
-            const tracks = await getArtistsTracks(item.id);
+            const tracks = await getArtistsTracks(item.id, spotifyToken);
             const audioFeatures = await getTracksFeatures(tracks.map(track => track.id).join(','), spotifyToken);
 
             let trackReqParamsValues = {};
@@ -181,7 +178,7 @@ const Statistics = () => {
                             <label htmlFor="" className="block">Исполнитель:</label>
                             <input type="text" ref={artistQRef} className="p-2 rounded-md"/>
                             <div className="py-3 flex justify-between">
-                                <button onClick={sendQHandler} className="py-2 px-4 bg-pink rounded-md">Построить</button>
+                                <button onClick={() => sendQHandler(token)} className="py-2 px-4 bg-pink rounded-md">Построить</button>
                                 <button onClick={() => openModal('songsTable')} className="md:hidden block bg-pink rounded-md h-12 w-12 p-2">
                                     <img src="/img/Excel.svg"/>
                                 </button>
