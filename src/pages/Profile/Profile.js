@@ -74,7 +74,7 @@ const Profile = observer(() => {
                                 <div className="flex flex-col px-3 py-4 space-y-5 text-black">
                                     <div className="rounded-full lg:w-48 lg:h-48 w-32 h-32 mx-auto bg-pink">
                                         {user.user.avatarId &&
-                                            <img src={ user.user.avatarId ? process.env.REACT_APP_API_URL + 'api/avatar/' + user.user.avatarId : 'img/Sunmi.jpg' } className="object-cover h-full w-full rounded-full"/>
+                                        <img src={ user.user.avatarId ? process.env.REACT_APP_API_URL + 'api/avatar/' + user.user.avatarId : 'img/Sunmi.jpg' } className="object-cover h-full w-full rounded-full"/>
                                         }
                                     </div>
                                     <div>
@@ -144,11 +144,11 @@ const Profile = observer(() => {
                                                           </span>
                                                             {
                                                                 selected ?
-                                                                (
-                                                                    <span className={`${active ? 'text-orange-600' : 'text-orange-600'} absolute inset-y-0 left-0 flex items-center pl-3`}>
+                                                                    (
+                                                                        <span className={`${active ? 'text-orange-600' : 'text-orange-600'} absolute inset-y-0 left-0 flex items-center pl-3`}>
                                                                         <CheckIcon className="w-5 h-5" aria-hidden="true" />
                                                                     </span>
-                                                                ) : null
+                                                                    ) : null
                                                             }
                                                         </>
                                                     )}
@@ -160,9 +160,9 @@ const Profile = observer(() => {
                             </Listbox>
                             <div className="flex space-x-5 text-lg uppercase font-montserrat md:block hidden">
                                 { sections.map(item =>
-                                <button className="bg-pink px-3 py-2 rounded-t-md focus:outline-none" onClick={() => setSection(item)}>
-                                    { item.title }
-                                </button>
+                                    <button className="bg-pink px-3 py-2 rounded-t-md focus:outline-none" onClick={() => setSection(item)}>
+                                        { item.title }
+                                    </button>
                                 )}
                             </div>
                             <div className="bg-yellow flex flex-col w-full h-full shadow-md md:rounded-b-md rounded">
@@ -189,12 +189,12 @@ const Profile = observer(() => {
                             as={Fragment}
                             enter="ease-out duration-300"
                             enterFrom="opacity-0"
-                            enterTo="opacity-100"
+                            enterTo="opacity-59"
                             leave="ease-in duration-200"
-                            leaveFrom="opacity-100"
+                            leaveFrom="opacity-59"
                             leaveTo="opacity-0"
                         >
-                            <Dialog.Overlay className="fixed inset-0" />
+                            <Dialog.Overlay className="fixed inset-0 bg-black opacity-60" />
                         </Transition.Child>
                         <span
                             className="inline-block h-screen align-middle"

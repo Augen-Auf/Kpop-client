@@ -64,7 +64,7 @@ const News = () => {
             setNews(r.sort(sortNewsByDate))
         })
         getAllTags().then(r => {
-          setTags(r)
+            setTags(r)
         })
     },[])
 
@@ -74,30 +74,30 @@ const News = () => {
                 <div className="flex flex-col space-y-10 mb:w-3/4 w-full px-4 pb-10">
                     <div className="w-full grid grid-rows-3 md:grid-cols-2 grid-cols-1 gap-4">
                         {news && news.length > 0 && news.slice(0,2).map( item =>
-                        <div
-                            className="py-5 rounded-md bg-pink bg-center row-span-3 flex items-end h-64"
-                            onClick={() => {history.push('/news/'+item.id)}}
-                            style={{backgroundImage: item.imageLink ? `url(${ item.imageLink })` : null, backgroundSize: 'cover'}}>
-                            <div className="w-5/6 p-2 bg-yellow bg-opacity-80">
+                            <div
+                                className="py-5 rounded-md bg-pink bg-center row-span-3 flex items-end h-64 cursor-pointer"
+                                onClick={() => {history.push('/news/'+item.id)}}
+                                style={{backgroundImage: item.imageLink ? `url(${ item.imageLink })` : null, backgroundSize: 'cover'}}>
+                                <div className="w-5/6 p-2 bg-yellow bg-opacity-80">
                                 <span>
                                     {item.title}
                                 </span>
+                                </div>
                             </div>
-                        </div>
                         )}
                     </div>
                     <div className="w-full grid md:grid-cols-3 grid-cols-1 gap-4">
                         { news && news.slice(2).map( item =>
-                        <div
-                            className="py-5 rounded-md bg-pink h-48 bg-center flex items-end"
-                            onClick={() => {history.push('/news/'+item.id)}}
-                            style={{backgroundImage: item.imageLink ? `url(${ item.imageLink })` : null, backgroundSize: 'cover'}}>
-                            <div className="w-full p-2 bg-yellow bg-opacity-80">
+                            <div
+                                className="py-5 rounded-md bg-pink h-48 bg-center flex items-end"
+                                onClick={() => {history.push('/news/'+item.id)}}
+                                style={{backgroundImage: item.imageLink ? `url(${ item.imageLink })` : null, backgroundSize: 'cover'}}>
+                                <div className="w-full p-2 bg-yellow bg-opacity-80">
                                 <span className="text-xs">
                                     {item.title}
                                 </span>
+                                </div>
                             </div>
-                        </div>
                         )}
                     </div>
                 </div>
@@ -108,7 +108,7 @@ const News = () => {
                     <div className="w-full flex flex-wrap justify-start">
                         {tags && tags.map(item =>
                             <div
-                                className={`px-3 py-2 ${ activeTag === item.id ? 'bg-white' : 'hover:bg-white'} border border-gray-800 rounded-md m-2`}
+                                className={`px-3 py-2 ${ activeTag === item.id ? 'bg-white' : 'hover:bg-white'} border border-gray-800 rounded-md m-2 cursor-pointer`}
                                 onClick={() => filterByTag(item.id)}
                             >
                                 <span>

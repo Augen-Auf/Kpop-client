@@ -53,27 +53,27 @@ const NewsReactions = ({userId, newsId}) => {
 
     return (
         <div className="flex space-x-3 bg-yellow rounded-md p-3">
-            <div className={`flex flex-col items-center p-3 ${userReaction === 'happy' ? 'bg-pink' : 'hover:bg-pink'} rounded-md`}
+            <div className={`flex flex-col items-center p-3 ${userReaction === 'happy' ? 'bg-pink' : 'hover:bg-pink'} rounded-md cursor-pointer`}
                  onClick={() => setReaction('happy')}>
                 <img src="/img/Emoji/happy.svg"  className="w-10 h-10"/>
                 <span>{ reactions.happy }</span>
             </div>
-            <div className={`flex flex-col items-center p-3 ${userReaction === 'sweat' ? 'bg-pink' : 'hover:bg-pink'} rounded-md`}
+            <div className={`flex flex-col items-center p-3 ${userReaction === 'sweat' ? 'bg-pink' : 'hover:bg-pink'} rounded-md cursor-pointer`}
                  onClick={() => setReaction('sweat')}>
                 <img src="/img/Emoji/sweat.svg"  className="w-10 h-10"/>
                 <span>{ reactions.sweat }</span>
             </div>
-            <div className={`flex flex-col items-center p-3 ${userReaction === 'sad' ? 'bg-pink' : 'hover:bg-pink'} rounded-md`}
+            <div className={`flex flex-col items-center p-3 ${userReaction === 'sad' ? 'bg-pink' : 'hover:bg-pink'} rounded-md cursor-pointer`}
                  onClick={() => setReaction('sad')}>
                 <img src="/img/Emoji/sad.svg"  className="w-10 h-10"/>
                 <span>{ reactions.sad }</span>
             </div>
-            <div className={`flex flex-col items-center p-3 ${userReaction === 'crying' ? 'bg-pink' : 'hover:bg-pink'} rounded-md`}
+            <div className={`flex flex-col items-center p-3 ${userReaction === 'crying' ? 'bg-pink' : 'hover:bg-pink'} rounded-md cursor-pointer`}
                  onClick={() => setReaction('crying')}>
                 <img src="/img/Emoji/crying.svg"  className="w-10 h-10"/>
                 <span>{ reactions.crying }</span>
             </div>
-            <div className={`flex flex-col items-center p-3 ${userReaction === 'angry' ? 'bg-pink' : 'hover:bg-pink'} rounded-md`}
+            <div className={`flex flex-col items-center p-3 ${userReaction === 'angry' ? 'bg-pink' : 'hover:bg-pink'} rounded-md cursor-pointer`}
                  onClick={() => setReaction('angry')}>
                 <img src="/img/Emoji/angry.svg"  className="w-10 h-10"/>
                 <span>{ reactions.angry }</span>

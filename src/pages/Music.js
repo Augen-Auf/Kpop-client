@@ -70,13 +70,14 @@ const Music = observer(() => {
         albums = albums.filter(value => {
             const access_artist = value.artists.filter(artist => {
                 if(artistsGenres[artist.id].includes("k-pop") || artistsGenres[artist.id].includes("korean pop")
-                || artistsGenres[artist.id].includes("k-rap") || artistsGenres[artist.id].includes("k-indie"))
+                    || artistsGenres[artist.id].includes("k-rap") || artistsGenres[artist.id].includes("k-indie"))
                     return artist
             });
             if(access_artist.length > 0)
                 return value
         });
         setNewReleases(albums);
+        artistQRef.current.value = 'Blackpink'
         await sendQHandler()
     }, []);
 
@@ -130,53 +131,56 @@ const Music = observer(() => {
 
     return(
         <>
-        <div className="flex flex-col mx-auto font-montserrat font-normal text-black text-md py-10">
-            <div className="bg-gray-600 py-10 bg-gradient-to-tr from-yellow to-pink">
-                <div className="container mx-auto flex flex-col space-y-4">
-                    <p className="text-center text-2xl">Релизы месяца</p>
-                    <div className="flex space-x-4 mx-auto px-4">
-                        {newReleases && newReleases.map((item, index) => {
-                            return <div className="bg-yellow rounded-md" key={'album_' + index}>
-                                <div>
-                                    <img src={item.images[0].url} alt="" className="md:h-72 h-48 w-full rounded-t-md"/>
+            <div className="flex flex-col mx-auto font-montserrat font-normal text-black text-md py-10">
+                <div className="bg-gray-600 py-10 bg-gradient-to-tr from-yellow to-pink">
+                    <div className="container mx-auto flex flex-col space-y-4">
+                        <p className="text-center text-2xl">Релизы месяца</p>
+                        <div className="flex space-x-4 mx-auto px-4">
+                            {newReleases && newReleases.map((item, index) => {
+                                return <div className="bg-yellow rounded-md" key={'album_' + index}>
+                                    <div>
+                                        <img src={item.images[0].url} alt="" className="md:h-72 h-48 w-full rounded-t-md"/>
+                                    </div>
+                                    <div className="p-2">
+                                        <p className="font-bold">{item.name}</p>
+                                        <p>{item.artists.map(artist => artist.name).join(", ")}</p>
+                                        <p className="bg-blue-dark rounded-md text-center">{item.release_date}</p>
+                                    </div>
                                 </div>
-                                <div className="p-2">
-                                    <p className="font-bold">{item.name}</p>
-                                    <p>{item.artists.map(artist => artist.name).join(", ")}</p>
-                                    <p className="bg-blue-dark rounded-md text-center">{item.release_date}</p>
+                            })}
+                        </div>
+                    </div>
+                </div>
+                <div className="container mx-auto space-y-5">
+                    <div className="mt-4 flex flex-col space-y-4 items-center w-full mx-auto md:mx-0 px-2">
+                        <label htmlFor="" className="block uppercase">Исполнитель</label>
+                        <input type="text" ref={artistQRef} className="p-2 rounded-md md:w-1/2 w-full"/>
+                        <button  onClick={sendQHandler} className="w-min py-2 px-4 bg-pink rounded-md">Построить</button>
+                    </div>
+                    <div className="grid md:grid-cols-5 md:gap-4 grid-cols-2 gap-4">
+                        {artistAlbums && artistAlbums.map((item, index) => {
+                            return(
+                                <div
+                                    className="bg-yellow rounded-md mx-2 flex flex-col justify-between cursor-pointer          "
+                                    key={'album_' + index}
+                                    onClick={()=> openModal(item.id)}>
+                                    <div>
+                                        <img src={item.images[0].url} alt="" className="w-full rounded-t-md"/>
+                                    </div>
+                                    <div className="p-2 flex flex-col flex-grow justify-between">
+                                        <div>
+                                            <p className="font-bold hover:text-pink">{item.name}</p>
+                                            <p>{item.artists.map(artist => artist.name).join(", ")}</p>
+                                        </div>
+                                        <p className="bg-blue-dark rounded-md text-center">{item.release_date}</p>
+                                    </div>
                                 </div>
-                            </div>
+                            )
                         })}
                     </div>
                 </div>
-            </div>
-            <div className="container mx-auto space-y-5">
-                <div className="mt-4 flex flex-col space-y-4 items-center w-full mx-auto md:mx-0 px-2">
-                    <label htmlFor="" className="block uppercase">Исполнитель</label>
-                    <input type="text" ref={artistQRef} value='Blackpink' className="p-2 rounded-md md:w-1/2 w-full"/>
-                    <button  onClick={sendQHandler} className="w-min py-2 px-4 bg-pink rounded-md">Построить</button>
-                </div>
-                <div className="grid md:grid-cols-5 md:gap-4 grid-cols-2 gap-4">
-                    {artistAlbums && artistAlbums.map((item, index) => {
-                        return(
-                            <div className="bg-yellow rounded-md mx-2 flex flex-col justify-between" key={'album_' + index}>
-                                <div>
-                                    <img src={item.images[0].url} alt="" className="w-full rounded-t-md"/>
-                                </div>
-                                <div className="p-2 flex flex-col flex-grow justify-between">
-                                    <div>
-                                        <p onClick={()=> openModal(item.id)} className="font-bold hover:text-pink">{item.name}</p>
-                                        <p>{item.artists.map(artist => artist.name).join(", ")}</p>
-                                    </div>
-                                    <p className="bg-blue-dark rounded-md text-center">{item.release_date}</p>
-                                </div>
-                            </div>
-                        )
-                    })}
-                </div>
-            </div>
 
-        </div>
+            </div>
             <Transition appear show={isOpen} as={Fragment}>
                 <Dialog
                     as="div"
@@ -188,12 +192,12 @@ const Music = observer(() => {
                             as={Fragment}
                             enter="ease-out duration-300"
                             enterFrom="opacity-0"
-                            enterTo="opacity-100"
+                            enterTo="opacity-59"
                             leave="ease-in duration-200"
-                            leaveFrom="opacity-100"
+                            leaveFrom="opacity-59"
                             leaveTo="opacity-0"
                         >
-                            <Dialog.Overlay className="fixed inset-0" />
+                            <Dialog.Overlay className="fixed inset-0 bg-black opacity-60"/>
                         </Transition.Child>
 
                         {/* This element is to trick the browser into centering the modal contents. */}
@@ -212,7 +216,7 @@ const Music = observer(() => {
                             leaveFrom="opacity-100 scale-100"
                             leaveTo="opacity-0 scale-95"
                         >
-                            <div className="inline-block  lg:w-1/2 md:w-2/3 w-full max-w-full p-6 my-8 overflow-hidden text-left align-middle transition-all transform bg-white shadow-xl rounded-2xl">
+                            <div className="inline-block lg:w-1/2 md:w-2/3 w-full max-w-full p-6 my-8 overflow-hidden text-left align-middle transition-all transform bg-white shadow-xl rounded-2xl">
                                 <Dialog.Title
                                     as="h3"
                                     className="text-lg font-medium leading-6 text-gray-900"

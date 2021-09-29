@@ -55,8 +55,8 @@ const Statistics = () => {
             {section: 'Energy (Энергичность)', desc: "Представляет собой перцептивную меру интенсивности и активности. Обычно энергичные песни кажутся быстрыми, громкими и шумными."},
             {section: 'Speechiness (Речивость)', desc: "Определяет количество произнесенных слов в дорожке». Если речивость песен выше 0.66, они, вероятно, состоят из произнесенных слов, оценка от 0.33 до 0.66 означает, что песни содержать как музыку, так и слова, а оценка ниже 0.33 означает, что в песнях нет слов."}];
 
-    useEffect(() => {
-        axios('https://accounts.spotify.com/api/token', {
+    useEffect(async () => {
+        const { data } = await axios('https://accounts.spotify.com/api/token', {
             'method': 'POST',
             'headers': {
                 'Content-Type':'application/x-www-form-urlencoded',
@@ -64,11 +64,17 @@ const Statistics = () => {
                     process.env.REACT_APP_SPOTIFY_KEY).toString('base64')),
             },
             data: 'grant_type=client_credentials'
-        }).then(tokenResponse => {
-            console.log(tokenResponse.data.access_token);
-            setToken(tokenResponse.data.access_token);
-        }).catch(error => console.log(error));
+        });
+        await setToken(data.access_token);
+        await pagePreload(data.access_token)
     }, []);
+
+    async function pagePreload (spotifyToken) {
+        artistQRef.current.value = 'Blackpink'
+        audioQRef.current.value = 'Blackpink, TWICE, BTS'
+        await sendQHandler()
+        await getTracksFeaturesHandler(spotifyToken)
+    }
 
     async function sendQHandler() {
         const q = artistQRef.current.value;
@@ -101,27 +107,32 @@ const Statistics = () => {
         return data.tracks
     }
 
-    async function getTracksFeatures(tracksIdsString) {
-        const {data} = await axios(`https://api.spotify.com/v1/audio-features?ids=${tracksIdsString}`,{
+    async function getTracksFeatures(tracksIdsString, spotifyToken) {
+        console.log(spotifyToken)
+        const { data } = await axios(`https://api.spotify.com/v1/audio-features?ids=${tracksIdsString}`,{
             'method': 'GET',
             'headers': {
                 'Content-Type': 'application/json',
                 'Accept': 'application/json',
-                'Authorization': 'Bearer ' + token
+                'Authorization': 'Bearer ' + spotifyToken
             }
         });
 
         return data.audio_features
     }
-    async function getTracksFeaturesHandler() {
+    async function getTracksFeaturesHandler(spotifyToken) {
         const artistsNames = audioQRef.current.value.split(', ');
+
+        console.log('Token: ' + token)
+        console.log('sptToken: ' + spotifyToken)
+
         const artists = await Promise.all(artistsNames.map(async (item) => {
             return await getArtist(item.trim())
         }));
 
         const artistsTracksFeatures = await Promise.all(artists.map(async (item) => {
             const tracks = await getArtistsTracks(item.id);
-            const audioFeatures = await getTracksFeatures(tracks.map(track => track.id).join(','));
+            const audioFeatures = await getTracksFeatures(tracks.map(track => track.id).join(','), spotifyToken);
 
             let trackReqParamsValues = {};
             audioFeatures.forEach((track, index) => {
@@ -177,51 +188,51 @@ const Statistics = () => {
                             </div>
                         </div>
                         <div className="flex md:flex-row flex-col md:space-x-4 space-x-0 md:space-y-0 space-y-4 w-full">
-                        <Plot
-                            data={[
-                                {
-                                    type: 'bar',
-                                    x: plotData && plotData.map(item => item.popularity),
-                                    y: plotData && plotData.map(item => item.name),
-                                    marker: {color:'#FFC1F1'},
-                                    orientation: 'h'
-                                }
-                            ]}
-                            useResizeHandler={true}
-                            style={{width: "100%", height: 500}}
-                            layout={{
-                                title: `<b>Топ 10 треков ${artist.name || ''}</b>`,
-                                paper_bgcolor: '#FFFFE1',
-                                plot_bgcolor: '#FFFFE1',
-                                font: {family: 'Montserrat', size: 16},
-                                xaxis: {
-                                    automargin: true,
-                                    title: {
-                                        text:'Popularity',
-                                        standoff:20
-                                    },
-                                    titlefont: {
-                                        family: 'Montserrat',
-                                        size: 14
-                                    },
-                                    showticklabels: true,
-                                    tickfont:{
-                                        family: 'Montserrat',
-                                        size: 12
+                            <Plot
+                                data={[
+                                    {
+                                        type: 'bar',
+                                        x: plotData && plotData.map(item => item.popularity),
+                                        y: plotData && plotData.map(item => item.name),
+                                        marker: {color:'#FFC1F1'},
+                                        orientation: 'h'
                                     }
-                                },
-                                yaxis: {
-                                    automargin: true,
+                                ]}
+                                useResizeHandler={true}
+                                style={{width: "100%", height: 500}}
+                                layout={{
+                                    title: `<b>Топ 10 треков ${artist.name || ''}</b>`,
+                                    paper_bgcolor: '#FFFFE1',
+                                    plot_bgcolor: '#FFFFE1',
+                                    font: {family: 'Montserrat', size: 16},
+                                    xaxis: {
+                                        automargin: true,
+                                        title: {
+                                            text:'Popularity',
+                                            standoff:20
+                                        },
+                                        titlefont: {
+                                            family: 'Montserrat',
+                                            size: 14
+                                        },
+                                        showticklabels: true,
+                                        tickfont:{
+                                            family: 'Montserrat',
+                                            size: 12
+                                        }
+                                    },
+                                    yaxis: {
+                                        automargin: true,
 
-                                    showticklabels: true,
-                                    tickfont: {
-                                        family: 'Montserrat',
-                                        size: 12
-                                    }
-                                },
-                                hovermode: 'closest'
-                            }}
-                        />
+                                        showticklabels: true,
+                                        tickfont: {
+                                            family: 'Montserrat',
+                                            size: 12
+                                        }
+                                    },
+                                    hovermode: 'closest'
+                                }}
+                            />
                             <div className="md:block hidden">
                                 <button onClick={() => openModal('songsTable')} className="bg-pink rounded-md h-12 w-12 p-2">
                                     <img src="/img/Excel.svg"/>
@@ -234,7 +245,7 @@ const Statistics = () => {
                             <label htmlFor="" className="block">Исполнители:</label>
                             <input type="text" ref={audioQRef} className="p-2 rounded-md"/>
                             <div className="py-3 flex justify-between">
-                                <button onClick={getTracksFeaturesHandler} className="py-2 px-4 bg-pink rounded-md">Построить</button>
+                                <button onClick={() => getTracksFeaturesHandler(token)} className="py-2 px-4 bg-pink rounded-md">Построить</button>
                                 <button onClick={() => openModal('audioParamsTable')} className="md:hidden block bg-pink rounded-md h-12 w-12 p-2">
                                     <img src="/img/Excel.svg"/>
                                 </button>
@@ -300,7 +311,7 @@ const Statistics = () => {
                             </div>
                             <div className="md:block hidden">
                                 <button onClick={() => openModal('audioParamsTable')} className="bg-pink rounded-md h-12 w-12 p-2">
-                                   <img src="/img/Excel.svg"/>
+                                    <img src="/img/Excel.svg"/>
                                 </button>
                             </div>
                         </div>
@@ -318,12 +329,12 @@ const Statistics = () => {
                             as={Fragment}
                             enter="ease-out duration-300"
                             enterFrom="opacity-0"
-                            enterTo="opacity-100"
+                            enterTo="opacity-59"
                             leave="ease-in duration-200"
-                            leaveFrom="opacity-100"
+                            leaveFrom="opacity-59"
                             leaveTo="opacity-0"
                         >
-                            <Dialog.Overlay className="fixed inset-0" />
+                            <Dialog.Overlay className="fixed inset-0 bg-black opacity-60" />
                         </Transition.Child>
 
                         {/* This element is to trick the browser into centering the modal contents. */}
@@ -349,11 +360,11 @@ const Statistics = () => {
                                 >
                                     Экспорт данных
                                 </Dialog.Title>
-                               <div className="flex flex-col items-center space-y-4 my-3">
-                                   { activeTable }
-                               </div>
+                                <div className="flex flex-col items-center space-y-4 my-3">
+                                    { activeTable }
+                                </div>
                                 <button onClick={() => closeModal()}
-                                            className="bg-red-100 p-2 hover:bg-red-300 rounded-md focus:outline-none">Закрыть</button>
+                                        className="bg-red-100 p-2 hover:bg-red-300 rounded-md focus:outline-none">Закрыть</button>
                             </div>
                         </Transition.Child>
                     </div>

@@ -27,14 +27,14 @@ const Vikis = () => {
     return (
         <div className="flex justify-center font-montserrat font-normal py-10">
             <div className="max-w-6xl grid lg:grid-cols-3 sm:grid-cols-2 grid-cols-1 md:gap-10 gap-6">
-            {
-                vikis && vikis.map(item =>
-                <div className="h-80 w-72 rounded-md flex flex-col justify-end py-5 shadow-md bg-yellow"
-                     onClick={() => {history.push('/vikis/'+ item.id)}}
-                     style={{backgroundImage: item.imageLink ? `url(${ item.imageLink })` : null, backgroundSize: 'cover'}}>
-                    <span className="bg-pink p-3 -mx-2 rounded-md text-center">{item.name}</span>
-                </div>)
-            }
+                {
+                    vikis && vikis.map(item =>
+                        <div className="h-80 w-72 rounded-md flex flex-col justify-end py-5 shadow-md bg-yellow cursor-pointer"
+                             onClick={() => {history.push('/vikis/'+ item.id)}}
+                             style={{backgroundImage: item.imageLink ? `url(${ item.imageLink })` : null, backgroundSize: 'cover'}}>
+                            <span className="bg-pink p-3 -mx-2 rounded-md text-center">{item.name}</span>
+                        </div>)
+                }
             </div>
         </div>
     );
