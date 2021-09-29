@@ -52,7 +52,7 @@ const UserNews = ({ userId}) => {
                             }
                         </div>
                         <div className="flex flex-grow lg:flex-row flex-col lg:items-center justify-center">
-                            <p className="mx-8 font-medium w-3/4 lg:text-lg cursor-pointer"
+                            <p className="mx-8 font-medium w-3/4 lg:text-lg hover:text-yellow cursor-pointer"
                                onClick={() => { history.push('/news/'+item.id) }}>
                                 { item.lid }
                             </p>
