@@ -1,7 +1,7 @@
 import React, {useContext} from 'react';
 import {Switch, Route, Redirect} from 'react-router-dom';
 import {authRoutes, publicRoutes} from "../routes";
-import {PORTAL_ROUTE} from "../utils/consts";
+import {NEWS_ROUTE, PORTAL_ROUTE} from "../utils/consts";
 import {Context} from "../index";
 
 const AppRouter = () => {
@@ -17,6 +17,9 @@ const AppRouter = () => {
                 {publicRoutes.map(({path, Component}) =>
                     <Route key={path} path={path} component={Component} exact/>
                 )}
+                <Route exact path="/">
+                    <Redirect to={NEWS_ROUTE}/>
+                </Route>
                 {/*<Redirect to={PORTAL_ROUTE}/>*/}
             </Switch>
         </div>
