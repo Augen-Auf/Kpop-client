@@ -155,8 +155,10 @@ const Music = observer(() => {
                 <div className="container mx-auto space-y-5">
                     <div className="mt-4 flex flex-col space-y-4 items-center w-full mx-auto md:mx-0 px-2">
                         <label htmlFor="" className="block uppercase">Исполнитель</label>
-                        <input type="text" ref={artistQRef} className="p-2 rounded-md md:w-1/2 w-full"/>
-                        <button  onClick={() => sendQHandler(token)} className="w-min py-2 px-4 bg-pink rounded-md">Построить</button>
+                        <input type="text" ref={artistQRef} className="p-2 rounded-md md:w-1/2 w-full focus:outline-none
+                        focus:border-pink"/>
+                        <button  onClick={() => sendQHandler(token)} className="w-min py-2 px-4 bg-pink rounded-md
+                        focus:outline-none">Построить</button>
                     </div>
                     <div className="grid md:grid-cols-5 md:gap-4 grid-cols-2 gap-4">
                         {artistAlbums && artistAlbums.map((item, index) => {

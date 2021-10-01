@@ -176,10 +176,13 @@ const Statistics = () => {
                     <div className="flex flex-col w-full">
                         <div className="flex flex-col lg:w-4/6 md:w-5/6 w-full mt-4">
                             <label htmlFor="" className="block">Исполнитель:</label>
-                            <input type="text" ref={artistQRef} className="p-2 rounded-md"/>
+                            <input type="text" ref={artistQRef} className="p-2 rounded-md border focus:outline-none
+                            focus:border-pink"/>
                             <div className="py-3 flex justify-between">
-                                <button onClick={() => sendQHandler(token)} className="py-2 px-4 bg-pink rounded-md">Построить</button>
-                                <button onClick={() => openModal('songsTable')} className="md:hidden block bg-pink rounded-md h-12 w-12 p-2">
+                                <button onClick={() => sendQHandler(token)} className="py-2 px-4 bg-pink rounded-md
+                                focus:outline-none">Построить</button>
+                                <button onClick={() => openModal('songsTable')} className="md:hidden block bg-pink
+                                rounded-md h-12 w-12 p-2 focus:outline-none">
                                     <img src="/img/Excel.svg"/>
                                 </button>
                             </div>
@@ -231,7 +234,8 @@ const Statistics = () => {
                                 }}
                             />
                             <div className="md:block hidden">
-                                <button onClick={() => openModal('songsTable')} className="bg-pink rounded-md h-12 w-12 p-2">
+                                <button onClick={() => openModal('songsTable')} className="bg-pink rounded-md h-12 w-12 p-2
+                                focus:outline-none">
                                     <img src="/img/Excel.svg"/>
                                 </button>
                             </div>
@@ -240,10 +244,12 @@ const Statistics = () => {
                     <div className="flex flex-col w-full">
                         <div className="flex flex-col lg:w-4/6 md:w-5/6 w-full mt-4">
                             <label htmlFor="" className="block">Исполнители:</label>
-                            <input type="text" ref={audioQRef} className="p-2 rounded-md"/>
+                            <input type="text" ref={audioQRef} className="p-2 rounded-md focus:outline-none border focus:border-pink"/>
                             <div className="py-3 flex justify-between">
-                                <button onClick={() => getTracksFeaturesHandler(token)} className="py-2 px-4 bg-pink rounded-md">Построить</button>
-                                <button onClick={() => openModal('audioParamsTable')} className="md:hidden block bg-pink rounded-md h-12 w-12 p-2">
+                                <button onClick={() => getTracksFeaturesHandler(token)} className="py-2 px-4 bg-pink rounded-md
+                                focus:outline-none">Построить</button>
+                                <button onClick={() => openModal('audioParamsTable')} className="md:hidden block bg-pink
+                                rounded-md h-12 w-12 p-2 focus:outline-none">
                                     <img src="/img/Excel.svg"/>
                                 </button>
                             </div>
@@ -307,7 +313,8 @@ const Statistics = () => {
                                 </div>
                             </div>
                             <div className="md:block hidden">
-                                <button onClick={() => openModal('audioParamsTable')} className="bg-pink rounded-md h-12 w-12 p-2">
+                                <button onClick={() => openModal('audioParamsTable')} className="bg-pink rounded-md h-12 w-12 p-2
+                                focus:outline-none">
                                     <img src="/img/Excel.svg"/>
                                 </button>
                             </div>

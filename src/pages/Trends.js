@@ -110,14 +110,18 @@ const Trends = () => {
                 </div>
             </div>
             <ReactPaginate
-                previousLabel={'Пред'}
-                nextLabel={'След'}
+                previousLabel={'Пред.'}
+                nextLabel={'След.'}
                 pageCount={pageCount}
                 onPageChange={({selected}) => setPageNumber(selected)}
-                containerClassName="flex space-x-5 items-center w-full justify-center py-10 block bottom-0"
-                previousLinkClassName="px-3 py-2 text-white bg-pink"
-                nextLinkClassName="px-3 py-2 text-white bg-pink"
-                pageLinkClassName="px-3 py-2 border b hover:bg-pink hover:text-white"
+                containerClassName="flex space-x-5 items-center w-full justify-center py-10 block bottom-0
+                focus:outline-none"
+                previousLinkClassName="px-3 py-2 text-white bg-pink rounded-md
+                focus:outline-none"
+                nextLinkClassName="px-3 py-2 text-white bg-pink rounded-md
+                focus:outline-none"
+                pageLinkClassName="px-3 py-2 border b hover:bg-pink hover:text-white rounded-md
+                focus:outline-none"
                 activeLinkClassName="bg-pink text-white"
             />
         </div>

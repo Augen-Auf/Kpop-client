@@ -34,7 +34,7 @@ const UserVikis = ({userId}) => {
         <div className="p-5 flex flex-col">
             <div className="flex justify-between items-center">
                 <span className="text-xl">Мои вики</span>
-                <button className="bg-blue p-2 rounded-md" onClick={() => {history.push('/create/vikis')}}>
+                <button className="bg-blue p-2 rounded-md hover:bg-pink focus:outline-none" onClick={() => {history.push('/create/vikis')}}>
                     <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
                     </svg>
@@ -53,14 +53,14 @@ const UserVikis = ({userId}) => {
                         </div>
                     </div>
                     <div className="flex lg:flex-row sm:flex-col lg:w-1/4 lg:justify-end lg:py-0 py-4 mx-3 lg:space-x-4 lg:space-y-0 sm:space-y-4 sm:space-x-0 space-y-0 space-x-4 sm:justify-start justify-center my-auto">
-                        <button className="bg-white p-3 rounded-md hover:bg-yellow" onClick={() => {history.push('/update/vikis/' + item.id)}}>
+                        <button className="bg-white p-3 rounded-md hover:bg-yellow focus:outline-none" onClick={() => {history.push('/update/vikis/' + item.id)}}>
                             <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none"
                                  viewBox="0 0 24 24" stroke="currentColor">
                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2}
                                       d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/>
                             </svg>
                         </button>
-                        <button className="bg-white p-3 rounded-md hover:bg-yellow" onClick={() => removeViki(item.id)}>
+                        <button className="bg-white p-3 rounded-md hover:bg-yellow focus:outline-none" onClick={() => removeViki(item.id)}>
                             <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none"
                                  viewBox="0 0 24 24" stroke="currentColor">
                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2}

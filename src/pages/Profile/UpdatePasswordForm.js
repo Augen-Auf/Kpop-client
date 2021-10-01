@@ -40,7 +40,7 @@ const UpdatePasswordForm = observer(({openForm}) => {
                 <form className="flex flex-col space-y-3" onSubmit={handleSubmit(changeOldPassword)}>
                     <div className="flex flex-col w-full">
                         <label>Старый пароль</label>
-                        <input className="px-3 py-2 border rounded-md"
+                        <input className="px-3 py-2 border rounded-md focus:outline-none focus:border-pink"
                                {...register('oldPassword',
                                    {
                                        required: "Поле старый пароль не заполнено",
@@ -49,7 +49,7 @@ const UpdatePasswordForm = observer(({openForm}) => {
 
                     <div className="flex flex-col w-full">
                         <label>Новый пароль</label>
-                        <input className="px-3 py-2 border rounded-md"
+                        <input className="px-3 py-2 border rounded-md focus:outline-none focus:border-pink"
                                {...register('newPassword', {
                                    required: "Поле новый пароль не заполнено",
                                    validate: notEqual
@@ -57,8 +57,8 @@ const UpdatePasswordForm = observer(({openForm}) => {
                     </div>
 
                     <div className="flex space-x-5">
-                        <button className="px-3 py-2 bg-pink rounded-md" type="button" onClick={() => close()}>Закрыть</button>
-                        <button className="px-3 py-2 bg-pink rounded-md" type="submit">Изменить</button>
+                        <button className="px-3 py-2 bg-pink rounded-md focus:outline-none" type="button" onClick={() => close()}>Закрыть</button>
+                        <button className="px-3 py-2 bg-pink rounded-md focus:outline-none" type="submit">Изменить</button>
                     </div>
                 </form>
             </div>

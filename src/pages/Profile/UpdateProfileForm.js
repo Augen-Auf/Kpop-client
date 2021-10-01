@@ -65,18 +65,18 @@ const UpdateProfileForm = observer(({openForm}) => {
                             <span className="text-base leading-normal">Выберите фото</span>
                             <input type='file' className="hidden" onChange={(e) => changeAvatar(e)}/>
                         </label>
-                        <button type="button" className="px-3 py-2 bg-pink rounded-md" onClick={() => removeAvatar()}>Сбросить</button>
+                        <button type="button" className="px-3 py-2 bg-pink rounded-md focus:outline-none" onClick={() => removeAvatar()}>Сбросить</button>
                     </div>
 
                     <div className="flex flex-col w-full">
                         <label>Имя</label>
-                        <input className="px-3 py-2 border rounded-md"
+                        <input className="px-3 py-2 border rounded-md focus:outline-none focus:border-pink"
                                {...register('name', {required: "Поле имя не заполнено"})}/>
                     </div>
 
                     <div className="flex flex-col w-full">
                         <label>Почта</label>
-                        <input className="px-3 py-2 border rounded-md"
+                        <input className="px-3 py-2 border rounded-md focus:outline-none focus:border-pink"
                                {...register('email', {
                                 required: "Поле email не заполнено",
                                 pattern: {value: EMAIL_REGEX, message:"В поле введен не email"}
@@ -84,8 +84,8 @@ const UpdateProfileForm = observer(({openForm}) => {
                     </div>
 
                     <div className="flex space-x-5">
-                        <button className="px-3 py-2 bg-pink rounded-md" type="button" onClick={() => close()}>Закрыть</button>
-                        <button className="px-3 py-2 bg-pink rounded-md" type="submit">Изменить</button>
+                        <button className="px-3 py-2 bg-pink rounded-md focus:outline-none" type="button" onClick={() => close()}>Закрыть</button>
+                        <button className="px-3 py-2 bg-pink rounded-md focus:outline-none" type="submit">Изменить</button>
                     </div>
                 </form>
             </div>

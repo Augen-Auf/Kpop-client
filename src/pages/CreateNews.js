@@ -186,7 +186,7 @@ const CreateNews = observer(() => {
                                     placeholder="Enter some tags"/>
                                 <button
                                     type="button"
-                                    className="py-2 px-3 bg-yellow rounded-md focus:outline-none focus:ring focus:ring-offset-2 focus:ring-pink"
+                                    className="py-2 px-3 bg-yellow rounded-md focus:outline-none"
                                     onClick={addTagHandler}>
                                     Добавить
                                 </button>
@@ -198,10 +198,10 @@ const CreateNews = observer(() => {
                             </div>
                         </div>
                         <div className=" flex justify-between">
-                            <button type="button" className="py-2 px-3 bg-yellow rounded-md focus:outline-none focus:ring focus:ring-offset-2 focus:ring-pink" onClick={() =>{history.push(PROFILE_ROUTE)}}>
+                            <button type="button" className="py-2 px-3 bg-yellow rounded-md focus:outline-none" onClick={() =>{history.push(PROFILE_ROUTE)}}>
                                 Отменить
                             </button>
-                            <button type="submit" className="py-2 px-3 bg-pink rounded-md focus:outline-none focus:ring focus:ring-offset-2 focus:ring-pink">
+                            <button type="submit" className="py-2 px-3 bg-pink rounded-md focus:outline-none">
                                 { isUpdate ? 'Обновить новость' : 'Добавить новость'}
                             </button>
                         </div>
