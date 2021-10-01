@@ -1,4 +1,5 @@
 import React, {useContext, useEffect, useRef, useState, Fragment} from 'react';
+import { Splide, SplideSlide } from '@splidejs/react-splide';
 import axios from 'axios';
 import { Dialog, Transition } from '@headlessui/react'
 import {Context} from "../index";
@@ -13,6 +14,7 @@ const Music = observer(() => {
     const [artistAlbums, setArtistAlbums] = useState();
     const [albumTracks, setAlbumTracks] = useState();
     const artistQRef = useRef(null);
+
 
     let [isOpen, setIsOpen] = useState(false)
 
@@ -129,26 +131,46 @@ const Music = observer(() => {
         setAlbumTracks(data.items)
     }
 
-
+    const primaryOptions = {
+        type: 'loop',
+        perPage: 4,
+        gap    : '1rem',
+        lazyLoad: 'nearby',
+        breakpoints: {
+            1024: {
+                perPage: 3
+            },
+            640: {
+                perPage: 2,
+            },
+        }
+    };
     return(
         <>
             <div className="flex flex-col mx-auto font-montserrat font-normal text-black text-md py-10">
                 <div className="bg-gray-600 py-10 bg-gradient-to-tr from-yellow to-pink">
                     <div className="container mx-auto flex flex-col space-y-4">
                         <p className="text-center text-2xl">Релизы месяца</p>
-                        <div className="flex space-x-4 mx-auto px-4">
-                            {newReleases && newReleases.map((item, index) => {
-                                return <div className="bg-yellow rounded-md" key={'album_' + index}>
-                                    <div>
-                                        <img src={item.images[0].url} alt="" className="md:h-72 h-48 w-full rounded-t-md"/>
-                                    </div>
-                                    <div className="p-2">
-                                        <p className="font-bold">{item.name}</p>
-                                        <p>{item.artists.map(artist => artist.name).join(", ")}</p>
-                                        <p className="bg-blue-dark rounded-md text-center">{item.release_date}</p>
-                                    </div>
-                                </div>
-                            })}
+                        <div className="w-full mx-auto px-4">
+                            <Splide options={ primaryOptions }>
+                                {newReleases && newReleases.map((item, index) => {
+                                    return <SplideSlide key={'slide_' + index}>
+                                        <div className="bg-yellow rounded-md h-full flex flex-col" key={'album_' + index}>
+                                            <div>
+                                                <img src={item.images[0].url} alt="" className="xl:h-72 lg:h-60 h-48 w-full rounded-t-md"/>
+                                            </div>
+                                            <div className="p-2 flex flex-col flex-grow justify-between">
+                                                <div>
+                                                    <p className="font-bold">{item.name}</p>
+                                                    <p>{item.artists.map(artist => artist.name).join(", ")}</p>
+                                                </div>
+                                                <p className="bg-blue-dark rounded-md text-center">{item.release_date}</p>
+                                            </div>
+                                        </div>
+                                    </SplideSlide>
+                                })}
+
+                            </Splide>
                         </div>
                     </div>
                 </div>

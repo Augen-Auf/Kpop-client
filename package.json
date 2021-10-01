@@ -11,6 +11,7 @@
     "@editorjs/marker": "^1.2.2",
     "@headlessui/react": "^1.2.0",
     "@hookform/resolvers": "^2.4.0",
+    "@splidejs/react-splide": "^0.4.4",
     "@tailwindcss/aspect-ratio": "^0.2.0",
     "@testing-library/jest-dom": "^5.11.10",
     "@testing-library/react": "^11.2.6",
