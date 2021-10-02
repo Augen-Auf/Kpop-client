@@ -89,7 +89,7 @@ const News = () => {
                     <div className="w-full grid md:grid-cols-3 grid-cols-1 gap-4">
                         { news && news.slice(2).map( item =>
                             <div
-                                className="py-5 rounded-md bg-pink h-48 bg-center flex items-end"
+                                className="py-5 rounded-md bg-pink h-48 bg-center flex items-end cursor-pointer"
                                 onClick={() => {history.push('/news/'+item.id)}}
                                 style={{backgroundImage: item.imageLink ? `url(${ item.imageLink })` : null, backgroundSize: 'cover'}}>
                                 <div className="w-full p-2 bg-yellow bg-opacity-80">
