@@ -78,7 +78,7 @@ const News = () => {
                                 className="py-5 rounded-md bg-pink bg-center row-span-3 flex items-end h-64 cursor-pointer"
                                 onClick={() => {history.push('/news/'+item.id)}}
                                 style={{backgroundImage: item.imageLink ? `url(${ item.imageLink })` : null, backgroundSize: 'cover'}}>
-                                <div className="w-5/6 p-2 bg-yellow bg-opacity-80">
+                                <div className="w-5/6 p-2 bg-yellow bg-opacity-80 hover:bg-pink">
                                 <span>
                                     {item.title}
                                 </span>
@@ -92,7 +92,7 @@ const News = () => {
                                 className="py-5 rounded-md bg-pink h-48 bg-center flex items-end cursor-pointer"
                                 onClick={() => {history.push('/news/'+item.id)}}
                                 style={{backgroundImage: item.imageLink ? `url(${ item.imageLink })` : null, backgroundSize: 'cover'}}>
-                                <div className="w-full p-2 bg-yellow bg-opacity-80">
+                                <div className="w-full p-2 bg-yellow bg-opacity-80 hover:bg-pink">
                                 <span className="text-xs">
                                     {item.title}
                                 </span>
